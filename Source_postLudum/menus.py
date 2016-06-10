@@ -46,6 +46,7 @@ class Menus (object):
                         if mainmenu_select == True:
                             constants.ISINTRO = True
                             gameOver = False
+                            main()
                         if retry_select == True:
                             constants.ISINTRO = False
                             gameOver = False
@@ -60,14 +61,13 @@ class Menus (object):
                 mainmenu_select = True
             else:
                 mainmenu_button = constants.BLACK
-                mainmenu_select = True
+                mainmenu_select = False
             self.screen.fill(constants.WHITE)
             TextToScreen(caption, constants.BLACK, -150, self.bigfont, self.screen)
             TextToScreen("Retry", retry_button, 10, self.mediumfont, self.screen)
             TextToScreen("Main Menu", mainmenu_button, 50, self.mediumfont, self.screen)
             TextToScreen(addinfo, constants.GREEN, -30, self.mediumfont, self.screen)
             pygame.display.flip()
-        main()
 
     def Level_screen(self, level, remain_lifes):
         self.screen.fill(constants.WHITE)

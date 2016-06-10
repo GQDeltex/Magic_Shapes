@@ -63,6 +63,12 @@ def main():
                     player.jump()
                 if event.key == pygame.K_ESCAPE:
                     menu.Pause_Menu()
+                if event.key == pygame.K_F5:
+                    mystget = False
+                    current_level = levels.Level(player, current_level_no, menu)
+                    player.rect.x = current_level.level_start_x
+                    player.rect.y = current_level.level_start_y
+                    player.level = current_level
  
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT and player.change_x < 0:
@@ -88,21 +94,27 @@ def main():
             uhh_sound.play()
             player.lifes -=1
             if player.lifes <= 0:
+                player.lifes = 3
                 menu.Game_Over("Game Over!", "You hurt yourself too often")
-            else:
                 mystget = False
+                current_level = levels.Level(player, current_level_no, menu)
                 player.rect.x = current_level.level_start_x
                 player.rect.y = current_level.level_start_y
+                player.level = current_level
+            else:
+                mystget = False
                 current_level = levels.Level(player, current_level_no, menu)
+                player.rect.x = current_level.level_start_x
+                player.rect.y = current_level.level_start_y
                 player.level = current_level
                 menu.Level_screen(current_level_no, player.lifes)
                     
         if pygame.sprite.spritecollide(player, current_level.finish_list, False) and mystget == True:
             current_level_no += 1
             mystget = False
+            current_level = levels.Level(player, current_level_no, menu)
             player.rect.x = current_level.level_start_x
             player.rect.y = current_level.level_start_y
-            current_level = levels.Level(player, current_level_no, menu)
             player.level = current_level
             menu.Level_screen(current_level_no, player.lifes)
  
