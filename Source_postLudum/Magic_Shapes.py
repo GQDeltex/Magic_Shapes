@@ -20,7 +20,7 @@ def main():
     player = Player(32, 544)
  
     # Set the current level
-    current_level_no = 16
+    current_level_no = 15
     current_level = levels.Level(player, current_level_no, menu)
     player.level = current_level
     player.rect.x = current_level.level_start_x
