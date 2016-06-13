@@ -18,7 +18,6 @@ class Menus (object):
         self.wrong_sound = pygame.mixer.Sound("Game-Files/Sounds/wrong.wav")
         self.wrong_sound.set_volume(constants.effect_volume)
         self.screen = screen
-        self.infoObject = pygame.display.Info()
 
     def Game_Over(self, caption = "Game Over!", addinfo = ""):
         gameOver = True
@@ -89,7 +88,7 @@ class Menus (object):
                         credits = False
             self.screen.fill(constants.WHITE)
             TextToScreen("Credits", constants.BLACK, -150, self.bigfont, self.screen)
-            TextToScreen("Code: Peter", constants.BLACK, -30, self.smallfont, self.screen)
+            TextToScreen("Code: Peter, Marcel", constants.BLACK, -30, self.smallfont, self.screen)
             TextToScreen("Art: Malin, Madita, Peter", constants.BLACK, 10, self.smallfont, self.screen)
             TextToScreen("Sound & Music: Malin, Madita", constants.BLACK, 50, self.smallfont, self.screen)
             TextToScreen("Made for Ludum Dare 35", constants.BLACK, 90, self.smallfont, self.screen)
@@ -137,7 +136,7 @@ class Menus (object):
                             selected += 1
                         else:
                             self.wrong_sound.play()
-                    if event.key == pygame.K_PLUS:
+                    if event.key == pygame.K_RIGHT:
                         if volume_select == True:
                             if (constants.music_volume + 0.1) <= 1.0:
                                 constants.music_volume += 0.1
@@ -152,19 +151,13 @@ class Menus (object):
                         if fullscreen_select == True:
                             if constants.ISFULLSCREEN == False:
                                 constants.ISFULLSCREEN = True
-                                #constants.SCREEN_WIDTH = self.infoObject.current_w
-                                #constants.SCREEN_HEIGHT = self.infoObject.current_h
-                                constants.SCREEN_WIDTH = 1920
-                                constants.SCREEN_HEIGHT = 1080
                                 size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
                                 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
                             else:
                                 constants.ISFULLSCREEN = False
-                                constants.SCREEN_WIDTH = 800
-                                constants.SCREEN_HEIGHT = 600
                                 size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
                                 screen = pygame.display.set_mode(size)
-                    if event.key == pygame.K_MINUS:
+                    if event.key == pygame.K_LEFT:
                         if volume_select == True:
                             if (constants.music_volume - 0.1) >= 0.0:
                                 constants.music_volume -= 0.1
@@ -179,8 +172,6 @@ class Menus (object):
                         if fullscreen_select == True:
                             if constants.ISFULLSCREEN == False:
                                 constants.ISFULLSCREEN = True
-                                constants.SCREEN_WIDTH = self.infoObject.current_w
-                                constants.SCREEN_HEIGHT = self.infoObject.current_h
                                 size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
                                 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
                             else:
@@ -220,7 +211,7 @@ class Menus (object):
             TextToScreen("Options", constants.BLACK, -150, self.bigfont, self.screen)
             TextToScreen("Music Volume: " + (str(int(constants.music_volume * 100)) + "%"), volume_button, 10, self.mediumfont, self.screen)
             TextToScreen("Effect Volume: " + (str(int(constants.effect_volume * 100)) + "%"), effect_button, 50, self.mediumfont, self.screen)
-            TextToScreen("Fullscreen(Danger! Not really working!): " + str(constants.ISFULLSCREEN), fullscreen_button, 90, self.mediumfont, self.screen)
+            TextToScreen("Fullscreen: " + str(constants.ISFULLSCREEN), fullscreen_button, 90, self.mediumfont, self.screen)
             TextToScreen("Back", back_button, 130, self.mediumfont, self.screen)
             pygame.display.flip()
 

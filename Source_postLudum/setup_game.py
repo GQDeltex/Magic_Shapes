@@ -51,7 +51,7 @@ class BuildExe:
         self.project_url = "about:none"
  
         #Version of program
-        self.project_version = "0.1"
+        self.project_version = ""
  
         #License of the program
         self.license = "No License"
