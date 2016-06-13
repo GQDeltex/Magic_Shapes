@@ -11,7 +11,10 @@ def main():
  
     # Set the height and width of the screen
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
-    screen = pygame.display.set_mode(size)
+    if constants.ISFULLSCREEN == True:
+        screen = pygame.display.set_mode(size, FULLSCREEN)
+    else:
+        screen = pygame.display.set_mode(size)
     
     menu = menus.Menus(screen)
  
@@ -134,6 +137,8 @@ def main():
  
     # Be IDLE friendly. If you forget this line, the program will 'hang'
     # on exit.
+    size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
+    screen = pygame.display.set_mode(size)
     pygame.quit()
     sys.exit()
  
