@@ -232,7 +232,7 @@ class Menus (object):
                         else:
                             self.wrong_sound.play()
                     if event.key == pygame.K_DOWN:
-                        if not selected + 1 == 4:
+                        if not selected + 1 == 5:
                             selected += 1
                         else:
                             self.wrong_sound.play()
@@ -240,6 +240,10 @@ class Menus (object):
                         if resume_select == True:
                             constants.ISINTRO = False
                             pause = False
+                        elif retry_select == True:
+                            constants.ISINTRO = False
+                            pause = False
+                            main()
                         elif option_select == True:
                             self.Option_Menu()
                         elif menu_select == True:
@@ -252,23 +256,30 @@ class Menus (object):
             else:
                 resume_button = constants.BLACK
                 resume_select = False
-            if selected == 2:
+            if selected == 3:
                 option_button = constants.RED
                 option_select = True
             else:
                 option_button = constants.BLACK
                 option_select = False
-            if selected == 3:
+            if selected == 4:
                 menu_button = constants.RED
                 menu_select = True
             else:
                 menu_button = constants.BLACK
                 menu_select = False
+            if selected == 2:
+                retry_button = constants.RED
+                retry_select = True
+            else:
+                retry_button = constants.BLACK
+                retry_select = False
             self.screen.fill(constants.WHITE)
             TextToScreen("Game Paused", constants.BLACK, -150, self.bigfont, self.screen)
             TextToScreen("Resume", resume_button, -30, self.mediumfont, self.screen)
-            TextToScreen("Options", option_button, 10, self.mediumfont, self.screen)
-            TextToScreen("Main Menu", menu_button, 50, self.mediumfont, self.screen)
+            TextToScreen("Retry", retry_button, 10, self.mediumfont, self.screen)
+            TextToScreen("Options", option_button, 50, self.mediumfont, self.screen)
+            TextToScreen("Main Menu", menu_button, 90, self.mediumfont, self.screen)
             pygame.display.flip()
 
     def intro(self):

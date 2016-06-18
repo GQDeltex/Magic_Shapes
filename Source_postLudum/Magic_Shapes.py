@@ -100,6 +100,7 @@ def main():
                 player.lifes = 3
                 menu.Game_Over("Game Over!", "You hurt yourself too often")
                 mystget = False
+                current_level_no = 1
                 current_level = levels.Level(player, current_level_no, menu)
                 player.rect.x = current_level.level_start_x
                 player.rect.y = current_level.level_start_y
