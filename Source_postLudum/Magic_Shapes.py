@@ -12,7 +12,7 @@ def main():
     # Set the height and width of the screen
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
     if constants.ISFULLSCREEN == True:
-        screen = pygame.display.set_mode(size, FULLSCREEN)
+        screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     else:
         screen = pygame.display.set_mode(size)
     
@@ -119,7 +119,11 @@ def main():
             player.rect.x = current_level.level_start_x
             player.rect.y = current_level.level_start_y
             player.level = current_level
-            menu.Level_screen(current_level_no, player.lifes)
+            if current_level_no == 17:
+                player.lifes = 100
+                menu.Level_screen("Final Round", player.lifes)
+            else:
+                menu.Level_screen(current_level_no, player.lifes)
  
         # Update the player.
         active_sprite_list.update()
