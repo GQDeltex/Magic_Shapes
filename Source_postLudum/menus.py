@@ -91,8 +91,10 @@ class Menus (object):
             TextToScreen("Code: Peter, Marcel", constants.BLACK, -30, self.smallfont, self.screen)
             TextToScreen("Art: Malin, Madita, Peter", constants.BLACK, 10, self.smallfont, self.screen)
             TextToScreen("Sound & Music: Malin, Madita", constants.BLACK, 50, self.smallfont, self.screen)
-            TextToScreen("Made for Ludum Dare 35", constants.BLACK, 90, self.smallfont, self.screen)
-            TextToScreen("Return to get back to the Main Menu", constants.BLACK, 180, self.smallfont, self.screen)
+            TextToScreen("Maps: Marcel, Malin, Madita", constants.BLACK, 90, self.smallfont, self.screen)
+            TextToScreen("Made for Ludum Dare 35", constants.BLACK, 150, self.smallfont, self.screen)
+            TextToScreen("Report Bugs at: gqdeltex@gmail.com", constants.BLUE, 190, self.smallfont, self.screen)
+            TextToScreen("Return to get back to the Main Menu", constants.RED, 230, self.smallfont, self.screen)
             pygame.display.flip()
 
     def Help(self):
@@ -111,7 +113,7 @@ class Menus (object):
             TextToScreen("Grab the blue boxes to shapeshift", constants.BLACK, -30, self.mediumfont, self.screen)
             TextToScreen("Jump to the End of the Level", constants.BLACK, 10, self.mediumfont, self.screen)
             TextToScreen("to get to the next Level!", constants.BLACK, 50, self.mediumfont, self.screen)
-            TextToScreen("Return to get back to the Main Menu", constants.BLACK, 180, self.smallfont, self.screen)
+            TextToScreen("Return to get back to the Main Menu", constants.RED, 180, self.smallfont, self.screen)
             pygame.display.flip()
 
     def Option_Menu(self):
