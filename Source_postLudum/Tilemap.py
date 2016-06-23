@@ -13,6 +13,8 @@ class Tilemap(object):
         self.finish_list = list()
         self.danger_list = list()
         
+        l = [0]
+        
         map_dest = "Game-Files/Maps/"
         
         self.tileset = Tileset.Tileset("Game-Files/Images/texturepack.png", 32, 32)
@@ -29,6 +31,7 @@ class Tilemap(object):
         self.height = 19
         
         if os.path.isfile(os.path.join(map_dest, str(level)+".txt")):
+            l = []
             l = [line.strip() for line in open(os.path.join(map_dest, str(level)+".txt")).readlines()]
             self.height = len(l)
             self.width = len(l[0])
