@@ -119,7 +119,7 @@ def main():
             player.rect.x = current_level.level_start_x
             player.rect.y = current_level.level_start_y
             player.level = current_level
-            if current_level_no == 17:
+            if current_level_no == 18:
                 player.lifes = 100
                 menu.Level_screen("Final Round", player.lifes)
             else:

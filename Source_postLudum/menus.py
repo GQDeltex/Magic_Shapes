@@ -49,6 +49,7 @@ class Menus (object):
                         if retry_select == True:
                             constants.ISINTRO = False
                             gameOver = False
+                            main()
             if selected == 1:
                 retry_button = constants.RED
                 retry_select = True
