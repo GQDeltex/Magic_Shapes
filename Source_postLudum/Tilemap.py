@@ -12,11 +12,11 @@ class Tilemap(object):
         self.mystery_list = list()
         self.finish_list = list()
         self.danger_list = list()
-        
+
         l = [0]
-        
+
         map_dest = "Game-Files/Maps/"
-        
+
         self.tileset = Tileset.Tileset("Game-Files/Images/texturepack.png", 32, 32)
         self.tileset.add_tile("grass", 0, 32)
         self.tileset.add_tile("air", 0, 64)
@@ -26,10 +26,10 @@ class Tilemap(object):
         self.tileset.add_tile("finish", 0, 192)
         self.tileset.add_tile("mystery", 0, 224)
         self.tileset.add_tile("spikes", 0, 288)
-        
+
         self.width = 24
         self.height = 19
-        
+
         if os.path.isfile(os.path.join(map_dest, str(level)+".txt")):
             l = []
             l = [line.strip() for line in open(os.path.join(map_dest, str(level)+".txt")).readlines()]
@@ -47,7 +47,7 @@ class Tilemap(object):
                     r = None
                 if r == 'g':
                     wall = wall_tools.Wall_tiles(j, i)
-                    walls.append(wall)                      
+                    walls.append(wall)
                     self.tiles[i].append("grass")
                 elif r == 's':
                     wall = wall_tools.Wall_tiles(j, i)
@@ -67,7 +67,7 @@ class Tilemap(object):
                     self.tiles[i].append("mystery")
                 elif r == 'z':
                     finito = Mystery_tools(j, i)
-                    self.finish_list.append(finito)                    
+                    self.finish_list.append(finito)
                     self.tiles[i].append("finish")
                 elif r == 'p':
                     levels.Level.level_start_x = (j * 32)
@@ -79,7 +79,7 @@ class Tilemap(object):
 					self.tiles[i].append("spikes")
                 else:
                     self.tiles[i].append("air")
-       
+
     def render(self, screen):
         for y in range(0, int(screen.get_height() / self.tileset.tile_height) +1):
             if y >= self.height or y < 0:
