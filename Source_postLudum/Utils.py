@@ -15,9 +15,9 @@ class SpriteSheet():
     
 class TextToScreen(object):
     def __init__(self, msg, color, y_displace, font, screen):
-        textSurf, textRect = self.text_objects(msg, color, font)
-        textRect.center = (constants.SCREEN_WIDTH/2), (constants.SCREEN_HEIGHT/2) + y_displace
-        screen.blit(textSurf, textRect)
+        self.textSurf, self.textRect = self.text_objects(msg, color, font)
+        self.textRect.center = (constants.SCREEN_WIDTH/2), (constants.SCREEN_HEIGHT/2) + y_displace
+        screen.blit(self.textSurf, self.textRect)
 
     def text_objects(self, text, color, size):
         textSurface = size.render(text, True, color)

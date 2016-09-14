@@ -36,7 +36,10 @@ class Tilemap(object):
             self.height = len(l)
             self.width = len(l[0])
         else:
-            menu.Game_Over(caption = "Finished!", addinfo = "You Finished the Game, Congratulations!")
+	    l = []
+	    l = [line.strip() for line in open(os.path.join(map_dest, "Final.txt")).readlines()]
+	    self.height = len(l)
+	    self.width = len(l[0])
 
         for i in range(0, len(l)):
             self.tiles.append(list())

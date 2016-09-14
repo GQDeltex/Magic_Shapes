@@ -23,7 +23,7 @@ def main():
     player = Player(32, 544)
  
     # Set the current level
-    current_level_no = 1
+    current_level_no = 17
     current_level = levels.Level(player, current_level_no, menu)
     player.level = current_level
     player.rect.x = current_level.level_start_x
@@ -98,7 +98,7 @@ def main():
             player.lifes -=1
             if player.lifes <= 0:
                 player.lifes = 3
-                menu.Game_Over("Game Over!", "You hurt yourself too often")
+                menu.Game_Over("Game Over!", ("You failed at Level: " + str(current_level_no)))
                 mystget = False
                 current_level_no = 1
                 current_level = levels.Level(player, current_level_no, menu)
@@ -121,7 +121,7 @@ def main():
             player.level = current_level
             if current_level_no == 18:
                 player.lifes = 100
-                menu.Level_screen("Final Round", player.lifes)
+                menu.Level_screen("Final", player.lifes)
             else:
                 menu.Level_screen(current_level_no, player.lifes)
  
