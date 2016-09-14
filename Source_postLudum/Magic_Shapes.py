@@ -24,6 +24,7 @@ def main():
  
     # Set the current level
     current_level_no = 1
+    max_level = 18
     current_level = levels.Level(player, current_level_no, menu)
     player.level = current_level
     player.rect.x = current_level.level_start_x
@@ -119,9 +120,9 @@ def main():
             player.rect.x = current_level.level_start_x
             player.rect.y = current_level.level_start_y
             player.level = current_level
-            if current_level_no == 18:
+            if current_level_no == max_level:
                 player.lifes = 100
-                menu.Level_screen("Final Round", player.lifes)
+                menu.Level_screen(current_level_no, player.lifes)
             else:
                 menu.Level_screen(current_level_no, player.lifes)
  

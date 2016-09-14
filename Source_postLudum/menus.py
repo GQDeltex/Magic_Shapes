@@ -9,7 +9,7 @@ from Magic_Shapes import main
 class Menus (object):
     def __init__(self, screen):
         if os.name == 'nt':
-            self.default_font = "Comic Sans MS"
+            self.default_font = "Sans-Serif"
         else:
             self.default_font = "Ubuntu"
         self.smallfont = pygame.font.SysFont(self.default_font, 25)
@@ -19,7 +19,7 @@ class Menus (object):
         self.wrong_sound.set_volume(constants.effect_volume)
         self.screen = screen
 
-    def Game_Over(self, caption = "Game Over!", addinfo = ""):
+    def Game_Over(self, caption = "Game Over!", addinfo = "You lost, but you're not the only one..."):
         gameOver = True
         is_selected = False
         selected = 1
@@ -356,11 +356,11 @@ class Menus (object):
                 option_button = constants.BLACK
                 option_select = False
             self.screen.blit(bg, bg_rect)
-            TextToScreen("Welcome to this Game!", constants.BLACK, -150, self.bigfont, self.screen)
+            TextToScreen("Welcome to Magic Shapes", constants.BLACK, -150, self.bigfont, self.screen)
             TextToScreen("Start", start_button, -30, self.mediumfont, self.screen)
             TextToScreen("How to play", help_button, 10, self.mediumfont, self.screen)
             TextToScreen("Options", option_button, 50, self.mediumfont, self.screen)
             TextToScreen("Credits", credit_button, 90, self.mediumfont, self.screen)
             TextToScreen("Exit", exit_button, 130, self.mediumfont, self.screen)
             pygame.display.flip()
-        pygame.mixer.music.stop()
+            pygame.mixer.music.stop()
