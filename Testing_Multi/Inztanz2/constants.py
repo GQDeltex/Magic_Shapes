@@ -20,7 +20,7 @@ ISFULLSCREEN = False
 #Menu Settings:
 ISINTRO = True
 
-MULTIPLAYER = False
+MULTIPLAYER = True
 SERVER = False
-IP = "10.16.0.28"
+IP = "127.0.0.1"
 PORT = 5000
