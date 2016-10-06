@@ -1,7 +1,0 @@
-d = (collision)Erde
-m = (collision)Erde-Gras
-g = (collision)Gras
-s = (collision)Stein
-u = (no-collision)Character wechsel (nur einmal benutzen)
-z = (no-collision)Ziel (links oben)
-a = (no-collision)Luft

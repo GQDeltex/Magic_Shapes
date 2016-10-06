@@ -39,16 +39,30 @@ def copy(src, dst):
     shutil.copytree(src, dst)
 
 def download(down_url, down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master/Version.txt"):
-    os.sytsem('wget -q ' + down_url_num)
-    verf = open("Version.txt", "r")
+    os.system('wget -q ' + down_url_num)
+    verf = open("./Version.txt", "r")
     version = verf.read()
     version = float(version)
     verf.close()
-    os.system('wget -N ' + down_url)
+    if os.path.isdir('./Magic_Shapes_postLudum'):
+        chf = open('./Magic_Shapes_postLudum/Version.txt')
+        check = chf.read()
+        check = float(check)
+        chf.close()
+        print "Your current Version: " + str(check)
+    else:
+        check = 0.0
+    if not version == check:
+        print "Downloading newer Version" + str(version)
+        os.system('wget ' + down_url)
+        print "Unzipping"
+        unzip('Magic_Shapes_postLudum.zip', './')
+        print "Tidying up"
+        os.rename('./Version.txt', './Magic_Shapes_postLudum/Version.txt')
+        os.remove('./Magic_Shapes_postLudum.zip')
+    else:
+        os.remove("./Version.txt")
+        print "Already on the newest version"
 
 if __name__ == '__main__':
-    print "Downloading"
     download(Internet_adress)
-    print "Unzipping"
-    unzip('Magic_Shapes_postLudum.zip', './')
-    print "Finished!"
