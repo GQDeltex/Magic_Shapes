@@ -22,5 +22,5 @@ ISINTRO = True
 
 MULTIPLAYER = True
 SERVER = True
-IP = "127.0.0.1"
+IP = "10.16.0.25"
 PORT = 5000
