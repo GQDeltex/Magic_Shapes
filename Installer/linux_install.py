@@ -8,6 +8,8 @@ filename = "Magic_Shapes_linux_postLudum.zip"
 Internet_adress = ("https://github.com/GQDeltex/Magic_Shapes/raw/master/" + filename)
 dir_location = ("./Magic_Shapes")
 unzip_location  = "./"
+global update
+global version
 
 def createShortcut(here, there):
     os.system("ln -s " + str(here) + " " + str(there))
@@ -39,12 +41,13 @@ def getVersion(down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master
     else:
         check = 0.0
     if check == version:
+        update = False
         return False, version
     else:
+        update = True
         return True, version
 
 def download(down_url):
-    update, version = getVersion()
     if update == True:
         print "Downloading newer Version" + str(version)
         os.system('wget ' + down_url)
@@ -54,21 +57,34 @@ def download(down_url):
         os.rename('./Version.txt', (dir_location + '/Version.txt'))
         os.remove(filename)
     else:
-        os.remove("./Version.txt")
         print "Already on the newest version"
 
 def main():
+    global update
+    global version
+    update = False
+    version = 0.0
+    getVersion()
     print "Welcome to the Magic_Shapes Installer!"
     print ""
-    if os.path.isdir(dir_location):
+    if os.path.isdir(dir_location) and not update:
         print "You have two options:"
         answer = raw_input("1. Reinstalling 2. Uninstalling        [1/2]")
         if answer == '1':
+            version = 0.0
+            update = True
             shutil.rmtree(dir_location)
             download(Internet_adress)
             os.system("cd Magic_Shapes && sudo chmod +x Magic_Shapes && ./Magic_Shapes")
         elif answer == '2':
             shutil.rmtree(dir_location)
+    elif os.path.isdir(dir_location) and update:
+        print "Update for Magic_Shapes to Version " + str(version) + " available. Do you want to update? [y/n]"
+        answer = raw_input("")
+        if answer == 'y':
+            shutil.rmtree(dir_location)
+            download(Internet_adress)
+            os.system("cd Magic_Shapes && sudo chmod +x Magic_Shapes && ./Magic_Shapes")
     else:
         print "Do you want to install now?"
         answer = raw_input("y/n \n")
