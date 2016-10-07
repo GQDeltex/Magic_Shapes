@@ -1,6 +1,9 @@
 import pygame
 import constants
 import socket
+import urllib2
+import os
+import shutil
 from time import sleep
 
 class Client():
@@ -82,3 +85,31 @@ class Mystery_tools(object):
             self.rect = pygame.Rect((x*32), (y*32), 32, 32)
             self.rect.x = (x*32)
             self.rect.y = (y*32)
+
+class Updater():
+    def __init__(self):
+        try:
+            self.response=urllib2.urlopen('http://www.google.com', timeout=1)
+            self.online = True
+        except urllib2.URLError:
+            self.online = False
+
+    def getVersion(self, down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master/Version.txt"):
+        if self.online:
+            os.system('wget -q ' + down_url_num)
+            self.verf = open("./Version.txt.1", "r")
+            self.version = self.verf.read()
+            self.version = float(self.version)
+            self.verf.close()
+            self.chf = open('./Version.txt')
+            self.check = self.chf.read()
+            self.check = float(self.check)
+            self.chf.close()
+            print "Your current Version: " + str(self.check)
+            os.remove("./Version.txt.1")
+            if self.check == self.version:
+                return False, self.version
+            else:
+                return True, self.version
+        else:
+            pass

@@ -24,7 +24,7 @@ def copy(src, dst):
         dst = os.path.join(dst, os.path.basename(src))
     shutil.copytree(src, dst)
 
-def download(down_url,  down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master/Version.txt"):
+def getVersion(down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master/Version.txt"):
     os.system('wget -q ' + down_url_num)
     verf = open("./Version.txt", "r")
     version = verf.read()
@@ -38,7 +38,14 @@ def download(down_url,  down_url_num="https://github.com/GQDeltex/Magic_Shapes/r
         print "Your current Version: " + str(check)
     else:
         check = 0.0
-    if not version == check:
+    if check == version:
+        return False, version
+    else:
+        return True, version
+
+def download(down_url):
+    update, version = getVersion()
+    if update == True:
         print "Downloading newer Version" + str(version)
         os.system('wget ' + down_url)
         print "Unzipping"
@@ -59,7 +66,7 @@ def main():
         if answer == '1':
             shutil.rmtree(dir_location)
             download(Internet_adress)
-            os.system("cd Magic_Shapes && ./Magic_Shapes")
+            os.system("cd Magic_Shapes && sudo chmod +x Magic_Shapes && ./Magic_Shapes")
         elif answer == '2':
             shutil.rmtree(dir_location)
     else:
@@ -73,7 +80,7 @@ def main():
             except:
                 print "Couldn't install dependecies!"
                 print "The Game may not work properly!"
-            os.system("cd Magic_Shapes && ./Magic_Shapes")
+            os.system("cd Magic_Shapes && sudo chmod +x Magic_Shapes && ./Magic_Shapes")
         else:
             print "Aborting"
 
