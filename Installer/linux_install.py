@@ -4,10 +4,10 @@ import zipfile
 import time
 import shutil
 
-filename = "Source_postLudum.zip"
+filename = "Magic_Shapes_linux_postLudum.zip"
 Internet_adress = ("https://github.com/GQDeltex/Magic_Shapes/raw/master/" + filename)
-dir_location = ("/home/peter/Source_postLudum/")
-unzip_location  = "/home/peter/"
+dir_location = ("./Magic_Shapes")
+unzip_location  = "./"
 
 def createShortcut(here, there):
     os.system("ln -s " + str(here) + " " + str(there))
@@ -41,12 +41,6 @@ def download(down_url,  down_url_num="https://github.com/GQDeltex/Magic_Shapes/r
     if not version == check:
         print "Downloading newer Version" + str(version)
         os.system('wget ' + down_url)
-        print "Installing dependecies"
-        try:
-            os.system('sudo apt-get install python python-pygame libsdl1.2-dev')
-        except:
-            print "Couldn't install dependecies!"
-            print "The Game may not work properly!"
         print "Unzipping"
         unzip(filename, dir_location)
         print "Tidying up"
@@ -65,8 +59,7 @@ def main():
         if answer == '1':
             shutil.rmtree(dir_location)
             download(Internet_adress)
-            #createShortcut((dir_location + "/Source_postLudum/Magic_Shapes.py"), '/home/peter/Desktop/')
-            #os.system('cd ' + dir_location + ' && python Magic_Shapes.py')
+            os.system("cd Magic_Shapes && ./Magic_Shapes")
         elif answer == '2':
             shutil.rmtree(dir_location)
     else:
@@ -74,8 +67,13 @@ def main():
         answer = raw_input("y/n \n")
         if answer == 'y':
             download(Internet_adress)
-            #createShortcut((dir_location + "/Source_postLudum/Magic_Shapes.py"), '/home/peter/Desktop/')
-            #os.system('cd ' + dir_location + ' && python Magic_Shapes.py')
+            print "Installing dependecies"
+            try:
+                os.system('sudo apt-get install python python-pygame libsdl1.2-dev')
+            except:
+                print "Couldn't install dependecies!"
+                print "The Game may not work properly!"
+            os.system("cd Magic_Shapes && ./Magic_Shapes")
         else:
             print "Aborting"
 
