@@ -52,7 +52,9 @@ def main():
     active_sprite_list = pygame.sprite.Group()
 
     active_sprite_list.add(player01)
-    active_sprite_list.add(player02)
+    if constants.MULTIPLAYER:
+        active_sprite_list.add(player02)
+
     # Loop until the user clicks the close button.
     done = False
 
