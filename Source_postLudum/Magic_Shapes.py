@@ -9,14 +9,7 @@ from player import Player
 def main():
     """ Main Program """
     pygame.init()
-
-    # Set the height and width of the screen
-    size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
-    if constants.ISFULLSCREEN == True:
-        screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
-    else:
-        screen = pygame.display.set_mode(size)
-
+    
     if constants.MULTIPLAYER:
         if constants.SERVER:
             server = Utils.Server()
@@ -26,10 +19,36 @@ def main():
             pygame.display.set_caption("Magic_Shapes - Client")
     else:
         pygame.display.set_caption("Magic_Shapes - Singleplayer")
-        server = None
+        server = None    
+    
+    if constants.ONLINEMODE:
+        screen = pygame.display.set_mode([400, 300])
+        bg = pygame.image.load("Game-Files/Images/splash.png").convert()
+        bg_rect = bg.get_rect()
+        screen.blit(bg, bg_rect)
+        pygame.display.flip()
+        
+        updater = Utils.Updater()
+        online = updater.online
+        constants.ONLINEMODE = False
+        if online:
+            update, version = updater.getVersion()
+        else:
+            version = 0.0
+            update = False
+    else:
+        version = 0.0
+        update = False
+        online = False
+    
+    size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
+    if constants.ISFULLSCREEN == True:
+        screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+    else:
+        screen = pygame.display.set_mode(size)    
 
     locmake = Utils.locmake()
-    menu = menus.Menus(screen)
+    menu = menus.Menus(screen, update, version)
 
     player01 = Player(32, 544)
     player02 = Player(32, 544)

@@ -7,7 +7,7 @@ from time import sleep
 from Magic_Shapes import main
 
 class Menus (object):
-    def __init__(self, screen):
+    def __init__(self, screen, update, version):
         if os.name == 'nt':
             self.default_font = "Sans-Serif"
         else:
@@ -18,16 +18,13 @@ class Menus (object):
         self.wrong_sound = pygame.mixer.Sound("Game-Files/Sounds/wrong.wav")
         self.wrong_sound.set_volume(constants.effect_volume)
         self.screen = screen
-        self.updater = Updater()
-        self.isonline = self.updater.online
-        if self.isonline:
-            self.update, self.version = self.updater.getVersion()
-            if self.update:
-                self.updatemessage = "Update to Version " + str(self.version) + " available, open Installer"
-            else:
-                self.updatemessage = ""
+        self.update = update
+        self.version = version
+        if self.update:
+            self.updatemessage = "Update to Version " + str(self.version) + " available, open Installer"
         else:
-            self.updatemessage = ""
+            self.updatemessage = "" 
+        
 
     def Game_Over(self, caption = "Game Over!", addinfo = "You lost, but you're not the only one..."):
         gameOver = True
@@ -299,7 +296,7 @@ class Menus (object):
         intro_bg = pygame.mixer.music.load("Game-Files/Sounds/Intro.wav")
         pygame.mixer.music.play(-1, 0.0)
         pygame.mixer.music.set_volume(constants.music_volume)
-        bg = pygame.image.load("Game-Files/Images/background_menu.png")
+        bg = pygame.image.load("Game-Files/Images/background_menu.png").convert()
         bg_rect = bg.get_rect()
         intro = True
         is_selected = False
@@ -372,7 +369,6 @@ class Menus (object):
             TextToScreen("Options", option_button, 50, self.mediumfont, self.screen)
             TextToScreen("Credits", credit_button, 90, self.mediumfont, self.screen)
             TextToScreen("Exit", exit_button, 130, self.mediumfont, self.screen)
-            #TextToScreen("Online: " + str(self.isonline), constants.BLACK, -270, self.smallfont, self.screen)
             TextToScreen(self.updatemessage, constants.BLACK, -240, self.smallfont, self.screen)
             pygame.display.flip()
             pygame.mixer.music.stop()

@@ -88,15 +88,24 @@ class Mystery_tools(object):
 
 class Updater():
     def __init__(self):
-        try:
-            self.response=urllib2.urlopen('http://www.google.com', timeout=1)
-            self.online = True
-        except urllib2.URLError:
+        if constants.ONLINEMODE:
+            try:
+                self.response=urllib2.urlopen('http://www.google.com', timeout=1)
+                self.online = True
+            except:
+                self.online = False            
+        else:
             self.online = False
+            
+    def get_Data(self, url, dest):
+        self.f = urllib2.urlopen(url)
+        self.data = self.f.read()
+        with open(dest, "wb") as self.code:
+            self.code.write(self.data)    
 
     def getVersion(self, down_url_num="https://github.com/GQDeltex/Magic_Shapes/raw/master/Version.txt"):
         if self.online:
-            os.system('wget -q ' + down_url_num)
+            self.get_Data(down_url_num, "Version.txt.1")
             self.verf = open("./Version.txt.1", "r")
             self.version = self.verf.read()
             self.version = float(self.version)

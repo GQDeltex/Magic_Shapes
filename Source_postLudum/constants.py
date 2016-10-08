@@ -9,7 +9,7 @@ YELLOW = (0, 255, 255)
 COLORKEY = (255, 0, 255)
 
 #Music Settings:
-music_volume = 0.1
+music_volume = 0.4
 effect_volume = 0.5
 
 #Display Settings:
@@ -19,6 +19,8 @@ ISFULLSCREEN = False
 
 #Menu Settings:
 ISINTRO = True
+
+ONLINEMODE = True
 
 MULTIPLAYER = False
 SERVER = False

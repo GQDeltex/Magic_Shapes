@@ -51,7 +51,7 @@ class BuildExe:
         self.project_url = "about:none"
 
         #Version of program
-        self.project_version = ""
+        self.project_version = "1.0"
 
         #License of the program
         self.license = "No License"
@@ -68,7 +68,7 @@ class BuildExe:
         self.icon_file = None
 
         #Extra files/dirs copied to game
-        self.extra_datas = ['Game-Files']
+        self.extra_datas = ['Game-Files', 'Version.txt']
 
         #Extra/excludes python modules
         self.extra_modules = []
@@ -152,7 +152,7 @@ class BuildExe:
                 'icon_resources': [(0, self.icon_file)],
                 'copyright': self.copyright
             }],
-            options = {'py2exe': {'optimize': 2, 'bundle_files': 1, 'compressed': True, \
+            options = {'py2exe': {'optimize': 0, 'bundle_files': 1, 'compressed': False, \
                                   'excludes': self.exclude_modules, 'packages': self.extra_modules, \
                                   'dll_excludes': self.exclude_dll,
                                   'includes': self.extra_scripts,
